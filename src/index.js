@@ -1,17 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//import App from './App';
+//import HelloWorld from './state-drills/HelloWorld';
+//import Bomb from './state-drills/Bomb';
+//import RoulletteGun from './state-drills/RouletteGun';
+//import Accordian from './state-drills/Accordian';
+import BookSearch from './BookSearch/BookSearch';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(<BookSearch />, document.getElementById('root'));
