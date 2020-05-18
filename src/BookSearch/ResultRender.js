@@ -1,4 +1,5 @@
 import React from 'react';
+import './ResultRender.css'
 
 export default function ResultRender(props){
   console.log(props.book)
