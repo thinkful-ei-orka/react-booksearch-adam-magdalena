@@ -39,8 +39,10 @@ export default class BookSearch extends React.Component{
         </header>
         <section className='toolbar'>
           <form className='search' onSubmit={this.handleSubmit}>
+              <div className='searchBar'>
               <input type='text' placeholder='Search' value={this.state.searchValue} onChange={this.searchChangeHandle} />
               <button type='submit' onClick={this.submitHandle}>Search</button>
+              </div>
             <section className='Filters'>
               <select className='printType' onChange={this.printChangeHandle} defaultValue={'all'}>
                 <option value='all'>All</option>
