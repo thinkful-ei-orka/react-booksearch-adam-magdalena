@@ -2,7 +2,6 @@ import React from 'react';
 import './ResultRender.css'
 
 export default function ResultRender(props){
-  console.log(props.book)
   return(
     <div className='bookEntry'>
       {props.book.volumeInfo.imageLinks!==undefined?<img className='coverPhoto' src={props.book.volumeInfo.imageLinks.thumbnail} alt={`${props.book.volumeInfo.title} cover`} />:<p className='coverPhoto'>"No Image Available"</p>}

@@ -3,14 +3,17 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 5vw;
+    padding: 2.5vw;
+    border: 1px grey dotted;
   }
 
  img {
-    margin-right: 10px;
+    margin-right: 5vw;
+    width:15vw;
 }
 
 .bookInfo {
     padding: 5vw;
     padding-left: 0;
+    width:75vw;
 }

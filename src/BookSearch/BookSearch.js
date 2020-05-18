@@ -32,6 +32,7 @@ export default class BookSearch extends React.Component{
     }
   }
   render(){
+    console.log(this.state)
     return(
       <div className='main'>
         <header>
@@ -68,6 +69,7 @@ export default class BookSearch extends React.Component{
               return (
                 <ResultRender
                   book={book}
+                  number={i}
                   key={`book${i}`}
                 />
               )
