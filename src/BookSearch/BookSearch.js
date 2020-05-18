@@ -6,6 +6,7 @@ export default class BookSearch extends React.Component{
   constructor(props){
     super(props)
     this.state = {
+      initial:true,
       loading:false,
       searchResults:[],
       searchValue:'',
@@ -19,8 +20,8 @@ export default class BookSearch extends React.Component{
     this.submitHandle=this.submitHandle.bind(this)
   }
   
-  printChangeHandle(e){this.setState({printValue:e.target.value});this.fetchBooks()}
-  filterChangeHandle(e){this.setState({filterValue:e.target.value});this.fetchBooks()}
+  printChangeHandle(e){this.setState({printValue:e.target.value},this.fetchBooks)}
+  filterChangeHandle(e){this.setState({filterValue:e.target.value},this.fetchBooks)}
   searchChangeHandle(e){this.setState({searchValue:e.target.value})}
   submitHandle(e){e.preventDefault();this.fetchBooks()};
 
@@ -28,7 +29,12 @@ export default class BookSearch extends React.Component{
     if (this.state.searchValue===''){alert('Please enter search values')} 
     else{
       this.setState({loading:true,error:null});
-      fetch(this.state.filterValue===null?`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchValue}&printType=${this.state.printValue}`:`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchValue}&printType=${this.state.printValue}&filter=${this.state.filterValue}`).then(res=>res.ok?res.json():Promise.reject('failed call')).then(searchResults=>this.setState({searchResults:searchResults.items,loading:false})).catch(error=>this.setState({error,loading:false}))
+      fetch(this.state.filterValue===null?`https://www.googleapis.com/books/v1/volumes?q=${this.state.searchValue}&printType=${this.state.printValue}`
+      :
+      `https://www.googleapis.com/books/v1/volumes?q=${this.state.searchValue}&printType=${this.state.printValue}&filter=${this.state.filterValue}`)
+      .then(res=>res.ok?res.json():Promise.reject('failed call'))
+      .then(searchResults=>this.setState( {searchResults:searchResults.items!==undefined?searchResults.items:[],loading:false,initial:false}))
+      .catch(error=>this.setState({error,loading:false,searchResults:[]}))
     }
   }
   render(){
@@ -62,9 +68,9 @@ export default class BookSearch extends React.Component{
           </form>
         </section>
         <section className='results'>
-          {this.state.loading===true?'Loading...':null}
+          {this.state.loading===true?<h3>'Loading...'</h3>:null}
           {this.state.error===null?null:this.state.error}
-          {this.state.searchResults==={}?null:
+          {this.state.searchResults.length===0?this.state.initial?null:<h3 className='noResults'>No Results to Display</h3>:
             this.state.searchResults.map((book,i)=>{
               return (
                 <ResultRender

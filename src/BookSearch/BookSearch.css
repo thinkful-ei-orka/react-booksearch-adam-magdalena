@@ -54,3 +54,8 @@ form {
     background-color: black;
     color: white;
   }
+
+  h3 {
+    width:100vw;
+    text-align:center;
+  }
